@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>parking</title>
+    </head>
+    <body>
+        <di>
+            <h1>
+                주차 정보
+            </h1>
+        </di>
+        <div id='parkingInfo'>
+
+            <table id="parking_Table" class="display">
+                <thead>
+                    <tr>
+                        <th>pNumber</th>
+                        <th>pAreaNumber</th>
+                        <th>battery</th>
+                        <th>sensorFailure</th>
+                        <th>createAt</th>
+                        <th>use</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            여기 표시
+
+        </div>
+    </body>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+
+    <script>
+        //alert('aaa');
+
+
+        $(document).ready(function(){
+            
+            get_parking_info();
+
+        });
+
+
+        function get_parking_info() {
+
+            var get = 'Y';
+
+            //Ajax GET Method TEST
+            $.ajax({
+                url: '/api/get',
+                async: true,
+                dataType: 'json',
+                type: 'GET',
+                data: {data:get},
+                success: function(result) {
+                    if (result) {
+                        var pInfo = result.orders;
+
+                        $('#parking_Table').DataTable( {
+                            destroy:true,
+                            data: pInfo,
+                            columns :[
+                                {data :'pNumber'},
+                                {data :'pAreaNumber'},
+                                {data :'battery'},
+                                {data :'sensorFailure'},
+                                {data :'createAt'},
+                                {data :'use'}
+                            ],
+                            paging: false
+
+                        } );
+
+                        setTimeout(get_parking_info, 5000);
+                        
+                        //alert(result);
+                    }
+                }
+            });
+        };
+
+    </script>
+</html>
