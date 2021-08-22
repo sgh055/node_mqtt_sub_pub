@@ -57,7 +57,7 @@ setInterval(() => {
     console.log(jsonParking);
     // client.publish('test', `test MQTT ${++i}`);
     client.publish('test', jsonParking, console.log);
-}, 5000);
+}, 1000);
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
