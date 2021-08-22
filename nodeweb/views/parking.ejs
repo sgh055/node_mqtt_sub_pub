@@ -73,11 +73,21 @@
                                 {data :'createAt'},
                                 {data :'use'}
                             ],
-                            paging: false
+                            paging: false,
+                            createdRow: (row, data, dataIndex, cells) => {
+                                if( data['use']==  'Y'){
+                                    //$(row).addClass('redClass');
+                                    $(cells[0]).css('background-color', '#38dc38');
+                                    $(cells[1]).css('background-color', '#38dc38');
+                                }else{
+                                    $(cells[0]).css('background-color', '#fb1a1a');
+                                    $(cells[1]).css('background-color', '#fb1a1a');
+                                }
+                            }
 
                         } );
 
-                        setTimeout(get_parking_info, 5000);
+                        //setTimeout(get_parking_info, 5000);
                         
                         //alert(result);
                     }
