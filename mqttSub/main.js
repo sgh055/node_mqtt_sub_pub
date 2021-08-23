@@ -3,7 +3,7 @@ const fs = require('fs');
 const connect = require('./schemas');
 const parkingDataModel = require('./schemas/parkingData');
 //var certPath = `C:/Program Files (x86)/mosquitto/certs`; //windows
-var certPath = `~/certs`; //linux
+var certPath = `/etc/mosquitto/certs`; //linux
 
 var option = {
     host: 'sgh055.iptime.org',
