@@ -1,11 +1,10 @@
 const mqtt = require('mqtt');
 const fs = require('fs');
 const randomstring = require('randomstring');
-// const connect = require('./schemas');
-// const parkingDataModel = require('./schemas/parkingData');
-//var certPath = `C:/Program Files (x86)/mosquitto/certs`; //windows
-var certPath = `/etc/mosquitto/certs`; //linux
+//var certPath = `C:/Program Files (x86)/mosquitto/certs`; //for windows path
+var certPath = `/etc/mosquitto/certs`; //for linux path
 
+//MQTTS options
 var option = {
     host: 'sgh055.iptime.org',
     port: 40005,
@@ -20,13 +19,15 @@ var option = {
     rejectUnauthorized: false
 };
 
-// const client = mqtt.connect('mqtt://192.168.0.4:8883');
 const client = mqtt.connect(option);
-// const client = mqtt.connect('mqtt://test.mosquitto.org');
 var i = 0;
+var intervalTime = 2000; 
+
+// repeate set intervalTime 
 setInterval(() => {
     console.log('publish...');
 
+    //create random data
     var parking = 
         {pNumber:randomstring.generate({
             length: 1,
@@ -53,14 +54,12 @@ setInterval(() => {
             }
         };
 
-    // console.log(parking);
     var jsonParking = JSON.stringify(parking);
     console.log(jsonParking);
-    // client.publish('test', `test MQTT ${++i}`);
     client.publish('test', jsonParking, console.log);
-}, 1000);
+}, intervalTime);
 
-function getRandomIntInclusive(min, max) {
+function getRandomIntInclusive(min, max) {  //min, max 사이에 랜덤값 생성
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //최댓값도 포함, 최솟값도 포함

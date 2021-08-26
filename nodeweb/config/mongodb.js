@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//connect Mongodb
 mongoose.connect('mongodb://kyuho:1234@sgh055.iptime.org:40004/admin?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', {
     dbName: 'iotparking',
     useNewUrlParser: true,

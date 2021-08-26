@@ -5,7 +5,7 @@ const parkingDataSchema = new Schema({
     createAt: {
         type: Date,
         required: true,
-        default: new Date(new Date(Date.now()).getTime() + (3600000*9))
+        default: new Date(new Date(Date.now()).getTime() + (3600000*9)) //KST
     },
     topic: {
         type:String,
